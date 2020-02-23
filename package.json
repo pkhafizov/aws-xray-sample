@@ -1,0 +1,28 @@
+{
+  "name": "aws-xray-sample",
+  "version": "1.0.0",
+  "description": "aws x-ray sample",
+  "main": "books.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pkhafizov/aws-xray-sample.git"
+  },
+  "keywords": [
+    "aws",
+    "sam",
+    "x-ray"
+  ],
+  "author": "Pavel Khafizov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pkhafizov/aws-xray-sample/issues"
+  },
+  "homepage": "https://github.com/pkhafizov/aws-xray-sample#readme",
+  "dependencies": {
+    "aws-sdk": "^2.624.0",
+    "uuid": "^3.4.0"
+  }
+}
