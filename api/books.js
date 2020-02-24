@@ -3,8 +3,8 @@
 /**
  * lambda function handling books requests
  */
-
-const AWS = require('aws-sdk');
+const AWSXRay = require('aws-xray-sdk');
+const AWS = AWSXRay.captureAWS(require('aws-sdk'));
 const { v4: uuidv4 } = require('uuid');
 
 const dynamodb = new AWS.DynamoDB();
@@ -65,7 +65,7 @@ function delFunction(id, TABLE_NAME, callback) {
 function putFunction(id, TABLE_NAME, callback, event) {
   dynamodb.getItem(
     {
-      Key: AWS.DynamoDB.marshall({ id }),
+      Key: AWS.DynamoDB.Converter.marshall({ id }),
       TableName: TABLE_NAME
     },
     (err, data) => {
@@ -77,7 +77,7 @@ function putFunction(id, TABLE_NAME, callback, event) {
           },
           body: JSON.stringify({ error: err })
         });
-      const retrievedItem = AWS.DynamoDB.Converter.unmarshall(data.item);
+      const retrievedItem = AWS.DynamoDB.Converter.unmarshall(data.Item);
       const newItem = {
         ...retrievedItem,
         ...JSON.parse(event.body),
@@ -102,7 +102,7 @@ function putFunction(id, TABLE_NAME, callback, event) {
             headers: {
               'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify(data.Items.map(item => AWS.DynamoDB.Converter.unmarshall(item)))
+            body: JSON.stringify(data)
           });
         }
       );

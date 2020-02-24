@@ -1,6 +1,11 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Resources:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: dev
+      TracingEnabled: true
   BookTable:
     Type: AWS::Serverless::SimpleTable
   Books:
@@ -13,19 +18,23 @@ Resources:
         Variables:
           TABLE_NAME: !Ref BookTable
       Policies: AmazonDynamoDBFullAccess
+      Tracing: Active
       Events:
         AddBook:
           Type: Api
           Properties:
             Method: post
             Path: /books
+            RestApiId: !Ref ApiGatewayApi
         ListBooks:
           Type: Api
           Properties:
             Method: get
             Path: /books
+            RestApiId: !Ref ApiGatewayApi
         Book:
           Type: Api
           Properties:
             Method: any
             Path: /books/{id}
+            RestApiId: !Ref ApiGatewayApi
