@@ -1,6 +1,6 @@
 ### Packaging Application
 <pre><code>
-sam package --template-file sam-template.yaml --s3-bucket <b>your_basket</b> --output-template-file sam-output-template.yaml
+sam package --template-file sam-template.yaml --s3-bucket <b>your_bucket</b> --output-template-file sam-output-template.yaml
 </code></pre>
 ### Deploying Application
 <pre><code>
