@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/pkhafizov/aws-xray-sample#readme",
   "dependencies": {
-    "aws-sdk": "^2.624.0",
+    "aws-sdk": "^2.814.0",
     "aws-xray-sdk": "^2.5.0",
     "uuid": "^3.4.0"
   }
